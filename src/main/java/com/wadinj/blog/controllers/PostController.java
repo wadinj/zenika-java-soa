@@ -1,13 +1,13 @@
-package com.wadinj.blog.webapp;
+package com.wadinj.blog.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class PostController {
 
     @RequestMapping("/")
-    public String index() {
+    public String get() {
         return "Greetings from Spring Boot!";
     }
 }

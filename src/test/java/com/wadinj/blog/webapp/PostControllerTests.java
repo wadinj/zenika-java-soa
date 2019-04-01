@@ -1,5 +1,6 @@
 package com.wadinj.blog.webapp;
 
+import com.wadinj.blog.entities.Post;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,25 +19,25 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class WebAppApplicationTests {
+public class PostControllerTests {
 
 	@LocalServerPort
 	private int port;
 
-	private URL base;
+	private URL baseUrl;
 
 	@Autowired
 	private TestRestTemplate template;
 
 	@Before
 	public void setUp() throws MalformedURLException {
-		this.base = new URL("http://localhost:" + port + "/");
+		this.baseUrl = new URL("http://localhost:" + port + "/");
 	}
 
 	@Test
-	public void getHello() {
+	public void whenCallingGetPost_thenReturnsAllPosts() {
 
-		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+		ResponseEntity<Post> response = template.getForEntity(baseUrl.toString(), Post.class);
 		assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
 	}
 }
