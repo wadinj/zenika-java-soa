@@ -1,5 +1,6 @@
 package com.wadinj.blog.webapp;
 
+import com.wadinj.blog.entities.Author;
 import com.wadinj.blog.entities.Post;
 import com.wadinj.blog.repositories.PostRepository;
 import org.junit.Test;
@@ -26,7 +27,11 @@ public class PostRepositoryTests {
     @Test
     public void givenPost_whenCallSave_thenRetrievePost() {
         Post post = new Post();
-        post.setAuthor("Jonathan Wadin");
+        Author author = new Author();
+        author.setDescription("A geek born next to the 21st century");
+        author.setLastName("Wadin");
+        author.setFirstName("Jonathan");
+        post.setAuthor(author);
         post.setContent("Hello, I'm the first post of this blog");
         post.setDate(new Date());
         post = entityManager.persistAndFlush(post);

@@ -1,8 +1,6 @@
 package com.wadinj.blog.entities;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,6 +9,8 @@ import java.util.Date;
 @Entity
 @Table(name = "POSTS")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -19,8 +19,9 @@ public class Post {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(name = "AUTHOR")
-    private String author;
+    @OneToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     @Column(name = "CONTENT")
     private String content;
